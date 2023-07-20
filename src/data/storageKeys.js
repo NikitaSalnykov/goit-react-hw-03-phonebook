@@ -1,5 +1,3 @@
 const CONTACTS = 'contacts'
 
-export default {
-    CONTACTS
-}
+export {CONTACTS}

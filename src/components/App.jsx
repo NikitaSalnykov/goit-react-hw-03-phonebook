@@ -2,8 +2,8 @@
 import React, { Component } from "react";
 import ContactForm from "./ContactForm/ContactForm";
 import { ContactList } from "./ContactList/ContactList";
-import storage from "helpers/storage";
-import storageKeys from "data/storageKeys";
+import * as storage from "helpers/storage";
+import * as storageKeys from "data/storageKeys";
 import Notiflix from 'notiflix';
 import { Filter } from "./Filter/Filter";
 import { nanoid } from 'nanoid'
@@ -27,8 +27,7 @@ export class App extends Component {
       storage.save(storageKeys.CONTACTS, this.state.contacts)
     }
 
-    if (prevState.contacts.length > contacts.length) Notiflix.Notify.failure('Contact deleted successfully')
-    if (prevState.contacts.length < contacts.length) Notiflix.Notify.success('Contact added successfully');
+    if (prevState.contacts.length > contacts.length) Notiflix.Notify.failure('Contact deleted successfully');
   }
 
   handleFormSubmit = ({ name, number }) => {  
@@ -47,6 +46,7 @@ export class App extends Component {
   this.setState(prevState => ({
     contacts: [...prevState.contacts, newContact],
   }));
+  Notiflix.Notify.success('Contact added successfully');
   };
 
   handleFilter = ({ target }) => {
